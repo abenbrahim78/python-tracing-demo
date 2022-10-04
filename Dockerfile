@@ -1,5 +1,7 @@
 FROM tiangolo/uvicorn-gunicorn-fastapi:python3.9-slim
 
+ENV PATH "/root/.local/bin:$PATH"
+
 RUN apt-get update && apt-get -y install curl
 
 RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3 - --uninstall && \
