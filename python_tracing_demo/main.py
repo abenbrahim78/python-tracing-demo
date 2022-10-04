@@ -15,7 +15,7 @@ app = FastAPI()
 resource = Resource(attributes={"service.name": "fastapi-tracing-demo"})
 tracer = TracerProvider(resource=resource)
 trace.set_tracer_provider(tracer)
-tracer.add_span_processor(BatchSpanProcessor(OTLPSpanExporter(endpoint="https://291699:eyJrIjoiOGE2YmQ1MGUzZWZmOTYxM2Y4MGIwMmE0NDg2OTg3NjAyN2VhODM1MSIsIm4iOiJ0ZW1wbyIsImlkIjozODg0MDd9tempo-us-central1.grafana.net:443")))
+tracer.add_span_processor(BatchSpanProcessor(OTLPSpanExporter(endpoint="https://291699:eyJrIjoiOGE2YmQ1MGUzZWZmOTYxM2Y4MGIwMmE0NDg2OTg3NjAyN2VhODM1MSIsIm4iOiJ0ZW1wbyIsImlkIjozODg0MDd9@tempo-us-central1.grafana.net:443")))
 
 LoggingInstrumentor().instrument()
 FastAPIInstrumentor.instrument_app(app, tracer_provider=tracer)
