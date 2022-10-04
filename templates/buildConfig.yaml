@@ -1,0 +1,26 @@
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  name: tracing
+  namespace: abenbrahim-ibm-dev
+spec:
+  nodeSelector: null
+  output:
+    to:
+      kind: DockerImage
+      name: >-
+        image-registry.openshift-image-registry.svc:5000/abenbrahim-ibm-dev/tracing:latest
+  resources: {}
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: Dockerfile
+  postCommit: {}
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/abenbrahim78/python-tracing-demo.git'
+      ref: main
+  triggers:
+    - type: ConfigChange
+  runPolicy: Serial
