@@ -13,13 +13,11 @@ from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
 from opentelemetry.instrumentation.logging import LoggingInstrumentor
 
 app = FastAPI()
-
-grafana_agent=os.getenv('grafana.agent')
                
 resource = Resource(attributes={"service.name": "fastapi-tracing-demo"})
 tracer = TracerProvider(resource=resource)
 trace.set_tracer_provider(tracer)
-tracer.add_span_processor(BatchSpanProcessor(OTLPSpanExporter(endpoint=grafana_agent)))
+tracer.add_span_processor(BatchSpanProcessor(OTLPSpanExporter(endpoint=os.getenv('grafana.agent'))))
 
 LoggingInstrumentor().instrument()
 FastAPIInstrumentor.instrument_app(app, tracer_provider=tracer)
